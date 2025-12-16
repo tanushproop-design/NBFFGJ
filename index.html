@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Login</title>
 <style>
 body{
@@ -18,14 +17,11 @@ body{
     from{ background-position:0% 0%; filter:brightness(1);}
     to{ background-position:100% 100%; filter:brightness(1.05);}
   }
-  .card{
-    width:var(--box-w);
-    padding:38px;
-    border-radius:18px;
-    background: linear-gradient(135deg, orange, red);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    position:relative;
-    color:#fff;
+  container{
+  background: linear-gradient(135deg, purple, purple);
+  padding:60px;
+  border-radius:25px;
+  animation: glow 3s infinite alternate;
   }
   h2{margin:0 0 12px; font-size:20px; letter-spacing:1px;}
   .field{position:relative; margin:12px 0;}
