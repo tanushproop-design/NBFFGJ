@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Login</title>
+<style>
+body{
+ margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, white, #d9d9d9);
+    animation: bgShift 8s infinite alternate;
+  }
+  @keyframes bgShift{
+    from{ background-position:0% 0%; filter:brightness(1);}
+    to{ background-position:100% 100%; filter:brightness(1.05);}
+  }
+  .card{
+    width:var(--box-w);
+    padding:38px;
+    border-radius:18px;
+    background: linear-gradient(135deg, orange, red);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position:relative;
+    color:#fff;
+  }
+  h2{margin:0 0 12px; font-size:20px; letter-spacing:1px;}
+  .field{position:relative; margin:12px 0;}
+  input[type="text"], input[type="email"], input[type="password"]{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:none;
+    font-family:inherit;
+    text-transform:uppercase;
+    font-size:14px;
+  }
+  .eye{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    user-select:none;
+    font-size:18px;
+  }
+  .row {display:flex; align-items:center; gap:8px; margin-top:8px;}
+  .row input[type="checkbox"]{width:16px; height:16px; accent-color:#000;}
+  button{
+    width:100%;
+    margin-top:14px;
+    padding:12px;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
+    background:#000;
+    color:#fff;
+    font-weight:700;
+    letter-spacing:1px;
+  }
+  .links{margin-top:10px; display:flex; justify-content:space-between; font-size:12px;}
+  a{ color:rgba(255,255,255,0.95); text-decoration:underline;}
+  small{opacity:0.95; font-size:11px;}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h2>Login</h2>
+
+  <form id="loginForm" onsubmit="return loginUser(event);">
+    <div class="field">
+      <input id="login_email" type="email" placeholder="Email" />
+    </div>
+    <div class="field">
+      <input id="login_user" type="text" placeholder="Username" />
+    </div>
+    <div class="field">
+      <input id="login_pass" type="password" placeholder="Password" required />
+      <span class="eye" onclick="toggleVisibility('login_pass')">👁️</span>
+    </div>
+
+    <div class="row">
+      <input id="login_human" type="checkbox" required />
+      <label for="login_human"><small>I AM HUMAN</small></label>
+    </div>
+
+    <button type="submit">Login</button>
+
+    <div class="links">
+      <a href="register.html">Create Account</a>
+      <a href="forget.html">Forgot?</a>
+    </div>
+  </form>
+</div>
+
+<script>
+function toggleVisibility(id){
+  const el = document.getElementById(id);
+  el.type = (el.type === 'password') ? 'text' : 'password';
+}
+
+/* Login logic: allow email OR username + password match */
+function loginUser(e){
+  e.preventDefault();
+  const email = (document.getElementById('login_email').value || "").trim();
+  const user = (document.getElementById('login_user').value || "").trim();
+  const pass = (document.getElementById('login_pass').value || "").trim();
+
+  const storedEmail = localStorage.getItem('email');
+  const storedUser = localStorage.getItem('user');
+  const storedPass = localStorage.getItem('pass');
+
+  // Basic validation
+  if(!pass){
+    alert('ENTER PASSWORD');
+    return false;
+  }
+  if(!(document.getElementById('login_human').checked)){
+    alert('PLEASE CONFIRM YOU ARE HUMAN');
+    return false;
+  }
+
+  const emailMatch = (storedEmail && email && email === storedEmail);
+  const userMatch  = (storedUser && user && user === storedUser);
+  const passMatch  = (storedPass && pass === storedPass);
+
+  if((emailMatch || userMatch) && passMatch){
+    // successful
+    window.location.href = "redirect.html";
+    return false;
+  } else {
+    alert('WRONG LOGIN DETAILS');
+    return false;
+  }
+}
+</script>
+
+</body>
+</html>
