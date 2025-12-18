@@ -6,17 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== Update Bar ===== */
 .update-bar{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(90deg, #f56a0a, #ea3f1d, #e3902b);
-  color: # #000000;
+  background: linear-gradient(90deg, #0f2027, #203a43, #000000);
+  color: #ffffff;
   text-align: center;
   padding: 8px 0;
   font-size: 14px;
+  font-weight: bold;   /* ✅ TEXT BOLD */
   z-index: 9999;
   animation: slideDown 0.6s ease;
 }
@@ -28,13 +28,11 @@
   font-weight: bold;
 }
 
-/* Animation */
 @keyframes slideDown{
   from{transform: translateY(-100%);}
   to{transform: translateY(0);}
 }
 
-/* Body spacing */
 body{
   margin: 0;
   padding-top: 40px;
@@ -45,23 +43,16 @@ body{
 
 <body>
 
-<!-- ===== Update Bar ===== -->
 <div class="update-bar" id="updateBar">
-  🔔 New update comming soon!
+  🔔 New Theme Added!
   <span onclick="closeBar()">✖</span>
 </div>
 
-<!-- ===== Website Content ===== -->
-<h1>My Website</h1>
-<p>Yahan tumhari website ka content hoga.</p>
-
-<!-- ===== JavaScript ===== -->
 <script>
 function closeBar(){
   document.getElementById("updateBar").style.display = "none";
 }
 
-/* Auto hide after 5 seconds */
 setTimeout(() => {
   document.getElementById("updateBar").style.display = "none";
 }, 5000);
