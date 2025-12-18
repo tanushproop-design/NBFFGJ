@@ -5,11 +5,11 @@
 <meta charset="UTF-8" />
 <title>Login</title>
 <style>
-  <div class="update-bar">
-  🚀 New Theme Added!
-  <span onclick="this.parentElement.style.display='none'">✖</span>
-</div>
 body{
+  <div class="update-bar" id="updateBar">
+  🚀 New Theme Added!
+  <span onclick="closeBar()">✖</span>
+</div>
   margin:0;
   height:100vh;
   display:flex;
