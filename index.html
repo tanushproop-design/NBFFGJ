@@ -1,79 +1,70 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Login</title>
-<style>
-body{
- <div class="update-bar">
-  ✨ New Theme Added! <a href="#">Check Now</a>
-</div>
+<meta charset="UTF-8">
+<title>Update Bar Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background: linear-gradient(135deg, white, #d9d9d9);
+<style>
+/* ===== Update Bar ===== */
+.update-bar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #8e2de2, #4facfe);
+  color: #fff;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 14px;
+  z-index: 9999;
+  animation: slideDown 0.6s ease;
 }
-.container{
-  background: linear-gradient(135deg, purple, pink);
-  padding:60px;
-  border-radius:25px;
-  animation: glow 3s infinite alternate;
+
+.update-bar span{
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+  font-weight: bold;
 }
-@keyframes glow{
-  from{ box-shadow:0 0 15px  purple;}
-  to{ box-shadow:0 0 35px pink;}
+
+/* Animation */
+@keyframes slideDown{
+  from{transform: translateY(-100%);}
+  to{transform: translateY(0);}
 }
-input{
-  display:block;
-  margin:15px 0;
-  padding:15px;
-  width:260px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
+
+/* Body spacing */
+body{
+  margin: 0;
+  padding-top: 40px;
+  font-family: Arial, sans-serif;
 }
-button{
-  padding:15px 30px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  background:black;
-  color:white;
-}
-a{color:white; font-size:16px;}
 </style>
 </head>
+
 <body>
 
-<div class="container">
-  <h2>Login</h2>
-  <form onsubmit="return loginUser()">
-    <input id="login_user" type="text" placeholder="Username" required />
-    <input id="login_pass" type="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
-  <a href="register.html">Create new account</a>
+<!-- ===== Update Bar HTML ===== -->
+<div class="update-bar" id="updateBar">
+  🚀 New Theme Added!
+  <span onclick="closeBar()">✖</span>
 </div>
 
-<script>
-function loginUser(){
-    const u = document.getElementById("login_user").value;
-    const p = document.getElementById("login_pass").value;
+<!-- ===== Page Content ===== -->
+<h1>My Website</h1>
+<p>Yahan tumhari website ka content aayega.</p>
 
-    if(u === localStorage.getItem("user") && p === localStorage.getItem("pass")){
-        window.location.href = "redirect.html";
-        return false;
-    }
-    else{
-        alert("Wrong username or password!");
-        return false;
-    }
+<!-- ===== JS ===== -->
+<script>
+function closeBar(){
+  document.getElementById("updateBar").style.display = "none";
 }
+
+/* Auto hide after 5 seconds */
+setTimeout(() => {
+  document.getElementById("updateBar").style.display = "none";
+}, 5000);
 </script>
 
 </body>
